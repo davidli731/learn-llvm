@@ -3,6 +3,9 @@
 ## Install Packages
 `sudo apt install -y clang clang-12 llvm llvm-12 ninja-build`
 
+## llvm-tutor
+`git clone https://github.com/banach-space/llvm-tutor.git`
+
 ## Compile my-code
 For files my-lang.cpp and their-code.cpp, run: 
 
