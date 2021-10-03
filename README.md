@@ -12,9 +12,9 @@ git clone https://github.com/SVF-tools/Test-Suite.git
 ## Compile my-code
 For files my-lang.cpp and their-code.cpp, run: 
 
-`clang++ -g -O3 <filename>.cpp 'llvm-config-12 --cxxflags --ldflags --system-libs --libs core' -o <filename>`
-
-NOTE: Replace ' with `
+```bash
+`clang++ -g -O3 <filename>.cpp `llvm-config-12 --cxxflags --ldflags --system-libs --libs core` -o <filename>`
+```
 
 ## Compile HelloWorld (llvm-tutor)
 ```bash
