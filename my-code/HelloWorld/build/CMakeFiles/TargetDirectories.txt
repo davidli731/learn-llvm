@@ -1,0 +1,6 @@
+/home/davidli731/learn-llvm/my-code/HelloWorld/build/CMakeFiles/rebuild_cache.dir
+/home/davidli731/learn-llvm/my-code/HelloWorld/build/CMakeFiles/HelloWorld.dir
+/home/davidli731/learn-llvm/my-code/HelloWorld/build/CMakeFiles/acc_gen.dir
+/home/davidli731/learn-llvm/my-code/HelloWorld/build/CMakeFiles/edit_cache.dir
+/home/davidli731/learn-llvm/my-code/HelloWorld/build/CMakeFiles/omp_gen.dir
+/home/davidli731/learn-llvm/my-code/HelloWorld/build/CMakeFiles/intrinsics_gen.dir

@@ -53,7 +53,17 @@ namespace
                 errs() << "Check if the function's name has been set to demangled version: " << F.getName() << "\n";
                 errs() << "-------------------------------------------------"
                        << "\n";
+
+                if (demangled_name == "A::g(int*)")
+                {
+                }
             }
+
+            // Simplify and remove function body
+            eliminateAliases(&F);
+            F.setComdat(nullptr);
+            F.deleteBody();
+            assert(F.isDeclaration() && "This didn't make the function external!");
 
             return true;
         }
@@ -79,6 +89,32 @@ namespace
             }
 
             return "";
+        }
+
+        static void eliminateAliases(GlobalValue *GV)
+        {
+            // First, check whether a GlobalAlias references this definition.
+            // GlobalAlias MAY NOT reference declarations.
+            for (;;)
+            {
+                // 1. Find aliases
+                SmallVector<GlobalAlias *, 1> aliases;
+                Module *M = GV->getParent();
+                for (Module::alias_iterator I = M->alias_begin(), E = M->alias_end();
+                     I != E; ++I)
+                    if (I->getAliasee()->stripPointerCasts() == GV)
+                        aliases.push_back(&*I);
+                if (aliases.empty())
+                    break;
+                // 2. Resolve aliases
+                for (unsigned i = 0, e = aliases.size(); i < e; ++i)
+                {
+                    aliases[i]->replaceAllUsesWith(aliases[i]->getAliasee());
+                    aliases[i]->eraseFromParent();
+                }
+                // 3. Repeat until no more aliases found; there might
+                // be an alias to an alias...
+            }
         }
     };
 }
